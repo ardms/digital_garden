@@ -26,6 +26,30 @@ From [Link](https://docs.github.com/en/authentication/connecting-to-github-with-
 * Make sure ssh-agent is runing in the background `$ eval "(ssh-agent -s)"`
 * Add the ssh key cteated above to the agent `ssh-add ~/.ssh/id_ed25519`
 
+## multiple ssh key managment
+
+* Creat `~/.ssh/config` file
+* This should look something like:
+```
+# Personal account, - the default config
+Host github.com-personal github account
+   HostName github.com
+   User git
+   IdentityFile ~/.ssh/id_rsa
+   
+# Work account
+Host github.com-BayWa github account   
+   HostName github.com
+   User git
+   IdentityFile ~/.ssh/id_ed25519
+```
+* Then depending on which key you would like to use you should either do:
+'git clone git@github.com-BayWa:your-github-account/private-project-repo.git'
+or 
+'git remote add origin git@github.com-BayWa:CODEZ-UP/Check-React-Version-Custom-Hooks.git`
+or if the repository is already conected to remote and you just want to alter the url:
+`git remote set-url origin git@github.com-BayWa:username/repo.git`
+
 # Git basics 
 
 ## Git config
@@ -35,7 +59,7 @@ From [Link](https://docs.github.com/en/authentication/connecting-to-github-with-
 
 ## Git commands 
 
-* `git clone -b <branchname> <remote-repo-url>`
+* `git clone --recurce-submodules -b <branchname> <remote-repo-url>`
 * 
 
 # Git Pull and all the hell breaks loose
